@@ -1,11 +1,14 @@
 ﻿//using Android.Icu.Text;
 
+//using Android.Net.Wifi.Aware;
+
 namespace Calculator;
 
 public partial class MainPage : ContentPage
 {
     double? Num1, Num2;
     string Operation;
+    bool doneCalc = true;
 
     public MainPage()
     {
@@ -13,33 +16,64 @@ public partial class MainPage : ContentPage
         CreateNumbers();
     }
 
-    public void CEClicked(object sender, EventArgs e)
+    public void DelClicked(object sender, EventArgs e)
+    {
+        if (Num2 != null)
+        {
+            
+        }
+    }
+
+    public void C_Clicked(object sender, EventArgs e)
+    {
+        if (Num2 != null)
+            Num2 = null;
+
+        else if (Operation != "" || Operation != null)
+            Operation = "";
+
+        else if (Num1 != null)
+            Num1 = null;
+
+        UpdateText();
+    }
+
+    public void CE_Clicked(object sender, EventArgs e)
     {
         Num1 = null;
         Num2 = null;
         Operation = "";
-        lbl.Text = "";
+        UpdateText();
+        doneCalc = true;
     }
 
     public void EqualClicked(object sender, EventArgs e)
     {
-        double CalcResult = Calc(Num1, Num2, Operation);
+        double? CalcResult = Calc(Num1, Num2, Operation);
+        if (CalcResult == null) return;
+
         Num1 = CalcResult;
         Operation = "";
         Num2 = null;
-        lbl.Text = CalcResult.ToString();
+        UpdateText();
+
+        doneCalc = true;
     }
 
     public void OperationClicked(object sender, EventArgs e)
     {
+        if (Num1 == null || Num2 != null) return;
+
         Operation = (sender as Button).Text;
-        lbl.Text = "";
+        UpdateText();
+
+        doneCalc = false;
     }
 
     public void NumberClicked(object sender, EventArgs e)
     {
         double n = int.Parse((sender as Button).Text);
-        if (Num1 == null) //אין כלום
+        if (Num1 == null || doneCalc) //אין כלום
         {
             Num1 = n;
         }
@@ -51,11 +85,14 @@ public partial class MainPage : ContentPage
         {
             Num2 = n;
         }
-        else // יש הכל
+        else //יש הכל
         {
             Num2 = Num2 * 10 + n;
         }
-        lbl.Text += n.ToString();
+
+        UpdateText();
+
+        doneCalc = false;
     }
 
     public void CreateNumbers()
@@ -78,29 +115,31 @@ public partial class MainPage : ContentPage
 
         pageGrid.Add(b2, 1, 5);
     }
-
-    public static double Calc(double? a, double? b, string operation)
+    public void UpdateText()
     {
-        if (a == null || b == null) return 0;
-        double a1 = (double)a;
-        double b1 = (double)b;
-        if (!IsOperation(operation)) return 0;
+        lbl.Text = $"{Num1} {Operation} {Num2}";
+    }
+
+    public static double? Calc(double? num1, double? num2, string operation)
+    {
+        if (num1 == null || num2 == null || operation == "" || operation == null) return num1;
+
+        if (!IsOperation(operation)) return null;
         switch (operation)
         {
             case "+":
-                return a1 + b1;
+                return num1 + num2;
             case "-":
-                return a1 - b1;
+                return num1 - num2;
             case "*":
-                return a1 * b1;
+                return num1 * num2;
             case "/":
-                if (b == 0) return 0;
-                return a1 / b1;
-                
-            default:
-                return 0;
+                if (num2 == 0) return null;
+                return num1 / num2;
         }
+        return null;
     }
+
 
     public static bool IsOperation(string st)
     {
