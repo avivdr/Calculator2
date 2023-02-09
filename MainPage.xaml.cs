@@ -20,8 +20,26 @@ public partial class MainPage : ContentPage
     {
         if (Num2 != null)
         {
-            
+            string st = Num2.ToString();
+            if (st.Length <= 1)
+                Num2 = null;
+            else
+                Num2 = double.Parse(st.Remove(st.Length - 1));
         }
+        else if (Operation != null && Operation != "")
+        {
+            Operation = "";
+        }
+        else if (Num1 != null && !doneCalc)
+        {
+            string st = Num1.ToString();
+            if (st.Length <= 1)
+                Num1 = null;
+            else
+                Num1 = double.Parse(st.Remove(st.Length - 1));
+        }
+
+        UpdateText();
     }
 
     public void C_Clicked(object sender, EventArgs e)
@@ -29,7 +47,7 @@ public partial class MainPage : ContentPage
         if (Num2 != null)
             Num2 = null;
 
-        else if (Operation != "" || Operation != null)
+        else if (Operation != "" && Operation != null)
             Operation = "";
 
         else if (Num1 != null)
@@ -101,7 +119,7 @@ public partial class MainPage : ContentPage
         {
             Button b = new();
             b.Text = (i + 1).ToString();
-            b.FontSize = 100;
+            b.FontSize = 70;
             b.BackgroundColor = Color.Parse("Blue");
             b.Clicked += NumberClicked;
 
@@ -109,7 +127,7 @@ public partial class MainPage : ContentPage
         }
         Button b2 = new();
         b2.Text = "0";
-        b2.FontSize = 80;
+        b2.FontSize = 70;
         b2.BackgroundColor = Color.Parse("Blue");
         b2.Clicked += NumberClicked;
 

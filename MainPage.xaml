@@ -5,14 +5,14 @@
 
     <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,*,*,*" x:Name="pageGrid">
         <Label Grid.ColumnSpan="4" FontSize="100" x:Name="lbl"/>
-        <Button x:Name="plus" Text="+" FontSize="100" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="1" Clicked="OperationClicked"/>
-        <Button x:Name="minus" Text="-" FontSize="100" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="2" Clicked="OperationClicked" />
-        <Button x:Name="Multiply" Text="*" FontSize="100" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="3" Clicked="OperationClicked"/>
-        <Button x:Name="Devide" Text="/" FontSize="100" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="4" Clicked="OperationClicked"/>
-        <Button x:Name="Equal" Text="=" FontSize="100" BackgroundColor="DarkBlue" Grid.Column="3" Grid.Row="5" Clicked="EqualClicked"/>
-        <Button x:Name="CE" Text="CE" FontSize="100" BackgroundColor="DarkRed" Grid.Column="0" Grid.Row="1" Clicked="CE_Clicked"/>
-        <Button x:Name="C" Text="C" FontSize="100" BackgroundColor="DarkRed" Grid.Column="1" Grid.Row="1" Clicked="C_Clicked"/>
-        <Button x:Name="Del" Text="Del" FontSize="100" BackgroundColor="DarkRed" Grid.Column="2" Grid.Row="1" Clicked="DelClicked"/>
+        <Button x:Name="plus" Text="+" FontSize="70" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="1" Clicked="OperationClicked"/>
+        <Button x:Name="minus" Text="-" FontSize="70" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="2" Clicked="OperationClicked" />
+        <Button x:Name="Multiply" Text="*" FontSize="70" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="3" Clicked="OperationClicked"/>
+        <Button x:Name="Devide" Text="/" FontSize="70" BackgroundColor="WhiteSmoke" TextColor="Black" Grid.Column="3" Grid.Row="4" Clicked="OperationClicked"/>
+        <Button x:Name="Equal" Text="=" FontSize="70" BackgroundColor="DarkBlue" Grid.Column="3" Grid.Row="5" Clicked="EqualClicked"/>
+        <Button x:Name="CE" Text="CE" FontSize="70" BackgroundColor="DarkRed" Grid.Column="0" Grid.Row="1" Clicked="CE_Clicked"/>
+        <Button x:Name="C" Text="C" FontSize="70" BackgroundColor="DarkRed" Grid.Column="1" Grid.Row="1" Clicked="C_Clicked"/>
+        <Button x:Name="Del" Text="Del" FontSize="70" BackgroundColor="DarkRed" Grid.Column="2" Grid.Row="1" Clicked="DelClicked"/>
 
     </Grid>
 
